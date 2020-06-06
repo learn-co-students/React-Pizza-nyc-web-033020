@@ -1,51 +1,61 @@
-{"pizzas":
-  [
-    { "id": 1,
-      "topping": "Plain",
-      "size": "Small",
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "topping": "House Special",
+      "size": "Large",
       "vegetarian": true
     },
-    { "id": 2,
-      "topping": "Pepperoni",
-      "size": "Small",
+    {
+      "id": 2,
+      "topping": "Pepperoni and Broccoli ",
+      "size": "Medium",
       "vegetarian": false
     },
-    { "id": 3,
-      "topping": "Mushroom",
+    {
+      "id": 3,
+      "topping": "Mushroom and Sausage",
       "size": "Small",
       "vegetarian": true
     },
-    { "id": 4,
+    {
+      "id": 4,
       "topping": "Sausage",
       "size": "Small",
       "vegetarian": false
     },
-    { "id": 5,
-      "topping": "Bacon",
-      "size": "Medium",
+    {
+      "id": 5,
+      "topping": "Bacon and Spinach",
+      "size": "Large",
       "vegetarian": false
     },
-    { "id": 6,
+    {
+      "id": 6,
       "topping": "Spinach",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 7,
+    {
+      "id": 7,
       "topping": "Black Olive",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 8,
+    {
+      "id": 8,
       "topping": "Pineapple",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 9,
+    {
+      "id": 9,
       "topping": "Salami",
       "size": "Large",
       "vegetarian": false
     },
-    { "id": 10,
+    {
+      "id": 10,
       "topping": "Chicken",
       "size": "Large",
       "vegetarian": true
