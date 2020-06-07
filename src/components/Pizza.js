@@ -7,7 +7,7 @@ const Pizza = (props) => {
     <tr>
       <td>{topping}</td>
       <td>{size}</td>
-      <td>{vegetarian ? 'Vegetarian' : 'Not Vegetarian'}</td>
+      <td>{vegetarian ? 'Yes' : 'No'}</td>
       <td><button onClick={()=>props.editPizzaHandler(id)} type="button"  className="btn btn-primary">Edit Pizza</button></td>
     </tr>
   )
