@@ -1,51 +1,61 @@
-{"pizzas":
-  [
-    { "id": 1,
-      "topping": "Plain",
-      "size": "Small",
-      "vegetarian": true
-    },
-    { "id": 2,
-      "topping": "Pepperoni",
-      "size": "Small",
-      "vegetarian": false
-    },
-    { "id": 3,
-      "topping": "Mushroom",
-      "size": "Small",
-      "vegetarian": true
-    },
-    { "id": 4,
-      "topping": "Sausage",
-      "size": "Small",
-      "vegetarian": false
-    },
-    { "id": 5,
-      "topping": "Bacon",
-      "size": "Medium",
-      "vegetarian": false
-    },
-    { "id": 6,
-      "topping": "Spinach",
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "topping": "Greg's Special Sauce ",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 7,
-      "topping": "Black Olive",
+    {
+      "id": 2,
+      "topping": "Shrroms and Broccoli ",
+      "size": "Medium",
+      "vegetarian": "true"
+    },
+    {
+      "id": 3,
+      "topping": "Mushroom and Red Pepper",
+      "size": "Small",
+      "vegetarian": true
+    },
+    {
+      "id": 4,
+      "topping": "Vegan Sausage",
+      "size": "Small",
+      "vegetarian": "true"
+    },
+    {
+      "id": 5,
+      "topping": "Tempe Bacon and Spinach",
+      "size": "Large",
+      "vegetarian": "true"
+    },
+    {
+      "id": 6,
+      "topping": "Spinach and Cheese",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 8,
+    {
+      "id": 7,
+      "topping": "Black Olive and Pinnapple",
+      "size": "Large",
+      "vegetarian": true
+    },
+    {
+      "id": 8,
       "topping": "Pineapple",
       "size": "Medium",
       "vegetarian": true
     },
-    { "id": 9,
+    {
+      "id": 9,
       "topping": "Salami",
       "size": "Large",
       "vegetarian": false
     },
-    { "id": 10,
+    {
+      "id": 10,
       "topping": "Chicken",
       "size": "Large",
       "vegetarian": true
