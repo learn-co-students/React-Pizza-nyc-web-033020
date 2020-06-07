@@ -14,14 +14,14 @@
     },
     {
       "id": 3,
-      "topping": "Mushroom",
-      "size": "Small",
+      "topping": "Mushroom apple",
+      "size": "Large",
       "vegetarian": true
     },
     {
       "id": 4,
-      "topping": "Sausage",
-      "size": "Small",
+      "topping": "Sausage banana",
+      "size": "Large",
       "vegetarian": false
     },
     {
@@ -32,9 +32,9 @@
     },
     {
       "id": 6,
-      "topping": "Spinach",
+      "topping": "Spinach waterMelon eee",
       "size": "Medium",
-      "vegetarian": true
+      "vegetarian": false
     },
     {
       "id": 7,

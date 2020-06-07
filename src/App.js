@@ -6,10 +6,10 @@ class App extends Component {
 
   state = {
     pizzas:[],
-    editPizza:{},
     topping:' ',
     size: ' ',
-    vegetarian: true
+    vegetarian: true,
+    id: null
     
   }
 
@@ -25,41 +25,34 @@ class App extends Component {
     let index = this.state.pizzas.findIndex(pizza=> pizza.id === id)
     let changedPizzas = this.state.pizzas
     let targetPizza = changedPizzas[index]
-    this.setState({editPizza : targetPizza})
+    this.setState({topping : targetPizza.topping, size:targetPizza.size, vegetarian:targetPizza.vegetarian , id:targetPizza.id})
   }
 
   handleInput = (e) => {
-    this.setState({
-      editPizza: {...this.state.editPizza, [e.target.name]: e.target.value}
-    })
+    if(e.target.name === "topping"){
+      this.setState({topping: e.target.value})
+    }else if(e.target.name === "size"){
+      this.setState({size: e.target.value})
+    }
   }
 
   checkHandler = (e) => {
     if(e.target.value==="vegetarian"){
-      this.setState({
-        editPizza: {...this.state.editPizza,
-          vegetarian:true
-        }
-      })
-    }else{
-      this.setState({
-        editPizza: {...this.state.editPizza,
-          vegetarian:false
-        }
-      })
-    }
+      this.setState({vegetarian:true})
+      }else{
+        this.setState({vegetarian:false})
+      }
   }
 
   submitHandler = (id) => {
-    let updatedPizza = this.state.editPizza 
-    console.log(updatedPizza)
+    
     fetch(`http://localhost:3000/pizzas/${id}`,{
       method: "PATCH",
       headers: {
         accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(this.state.editPizza)
+      body: JSON.stringify({topping: this.state.topping, size:this.state.size, vegetarian: this.state.vegetarian})
     }).then(r=> r.json()).then(data=>{
       let index = this.state.pizzas.findIndex(pizza=> pizza.id === id)
       let updatedPizzas = this.state.pizzas
@@ -67,11 +60,11 @@ class App extends Component {
       this.setState({pizzas: updatedPizzas})
     })
   }
-
-
-
+  
+  
+  
   render() {
-    console.log(this.state.editPizza)
+
     return (
       <Fragment>
         <Header/>

@@ -1,9 +1,10 @@
 import React from "react"
 
 const PizzaForm = (props) => {
-  // console.log("form!!!", props.all.editPizza)
-  const {id,topping, size, vegetarian} = props.all.editPizza
+  const{id, topping, size, vegetarian} = props.all
+  
   return(
+ 
       <div className="form-row">
         <div className="col-5" >
             <input type="text" className="form-control" name="topping" placeholder="Pizza Topping" value={topping} onChange={props.handleInput}/>
@@ -17,13 +18,13 @@ const PizzaForm = (props) => {
         </div>
         <div className="col"  onChange={props.checkHandler}>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="vegetarian" value="vegetarian" checked={vegetarian===true}  />
+            <input className="form-check-input" type="radio" name="vegetarian" value="vegetarian" checked={vegetarian===true}  readOnly/>
             <label className="form-check-label">
               Vegetarian
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio"  name="vegetarian" value="not vegetarian"checked={vegetarian===false} />
+            <input className="form-check-input" type="radio"  name="vegetarian" value="not vegetarian"checked={vegetarian===false} readOnly/>
             <label className="form-check-label">
               Not Vegetarian
             </label>
@@ -33,8 +34,6 @@ const PizzaForm = (props) => {
           <button type="submit" className="btn btn-success" onClick={()=>props.submitHandler(id)}>Submit</button>
         </div>
       </div>
-
   )
 }
-
 export default PizzaForm
