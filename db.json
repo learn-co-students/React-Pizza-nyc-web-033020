@@ -2,44 +2,44 @@
   "pizzas": [
     {
       "id": 1,
-      "topping": "House Special",
-      "size": "Large",
+      "topping": "Greg's Special Sauce ",
+      "size": "Medium",
       "vegetarian": true
     },
     {
       "id": 2,
-      "topping": "Pepperoni and Broccoli ",
+      "topping": "Shrroms and Broccoli ",
       "size": "Medium",
-      "vegetarian": false
+      "vegetarian": "true"
     },
     {
       "id": 3,
-      "topping": "Mushroom and Sausage",
+      "topping": "Mushroom and Red Pepper",
       "size": "Small",
       "vegetarian": true
     },
     {
       "id": 4,
-      "topping": "Sausage",
+      "topping": "Vegan Sausage",
       "size": "Small",
-      "vegetarian": false
+      "vegetarian": "true"
     },
     {
       "id": 5,
-      "topping": "Bacon and Spinach",
+      "topping": "Tempe Bacon and Spinach",
       "size": "Large",
-      "vegetarian": false
+      "vegetarian": "true"
     },
     {
       "id": 6,
-      "topping": "Spinach",
+      "topping": "Spinach and Cheese",
       "size": "Medium",
       "vegetarian": true
     },
     {
       "id": 7,
-      "topping": "Black Olive",
-      "size": "Medium",
+      "topping": "Black Olive and Pinnapple",
+      "size": "Large",
       "vegetarian": true
     },
     {

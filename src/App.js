@@ -44,7 +44,12 @@ class App extends Component {
        'content-type': 'application/json',
        accept: 'application/json'
      }, body: JSON.stringify(this.state.pizzaToEdit)
-   }).then(res => res.json()).then(pizza => console.log(pizza))
+   }).then(res => res.json()).then(newPizza => {
+     let index = (newPizza.id - 1)
+     let newPizzaArray = this.state.pizzas.slice()
+     newPizzaArray[index] = newPizza
+     this.setState({pizzas: [...newPizzaArray]})
+   })
  }
 
 
@@ -57,11 +62,12 @@ class App extends Component {
 
   render() {
     let pizzasShown = this.state.pizzas 
+    console.log(this.state.pizzas)
 
     return (
       <Fragment>
         <Header/>
-        <PizzaForm pizzaToEdit={this.state.pizzaToEdit} change={this.change} submitPizza={this.submitPizza} toggle={this.state.toggle}/>
+        <PizzaForm pizzaToEdit={this.state.pizzaToEdit} change={this.change} submitPizza={this.submitPizza} toggle={this.toggle}/>
         <PizzaList pizzas={pizzasShown} editPizza={this.editPizza}/>
       </Fragment>
     );
