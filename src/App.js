@@ -17,13 +17,13 @@ class App extends Component {
     }
   };
   
-  // componentDidMount(){
-  //   fetch(PIZZAS_URL)
-  //     .then(resp => resp.json())
-  //     .then(pizzas => {
-  //       this.setState({ pizzas })
-  //     })
-  // }
+  componentDidMount(){
+    fetch(PIZZAS_URL)
+      .then(resp => resp.json())
+      .then(pizzas => {
+        this.setState({ pizzas })
+      })
+  }
 
   editPizza = (pizzaId) => {
     const pizzas = this.state.pizzas 
@@ -89,25 +89,16 @@ class App extends Component {
       .then(resp => resp.json())
       .then(pizza => {
         alert(`pizza ${pizza.id}  updated`)
-        this.setState({
-          editingPizza: {
-            id: '',
-            topping: '',
-            size: '',
-            vegetarian: false
-          }
-        })
+        fetch(PIZZAS_URL)
+          .then(resp => resp.json())
+          .then(pizzas => {
+            this.setState({ pizzas })
+          })
       })
     
   };
 
   render() {  
-    
-    fetch(PIZZAS_URL)
-      .then(resp => resp.json())
-      .then(pizzas => {
-        this.setState({ pizzas })
-      })
 
     return (
       <Fragment>
