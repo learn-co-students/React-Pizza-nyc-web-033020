@@ -3,7 +3,7 @@ import React from "react"
 const PizzaForm = (props) => {
   
   const handleClick = (e) => {
-    
+    props.updateWholePizza()
   };
 
   const handleChange = (e) => {
@@ -12,19 +12,17 @@ const PizzaForm = (props) => {
 
   const handleSize = (e) => {
     props.updateSize(e.target.value)
-    // console.log(e.target.value)
   };
 
   const handleRadio = (e) => {
-    console.log(e.target.value)
+    props.updateVeggie(e.target.value)
   };
 
   return(
       <div className="form-row">
         <div className="col-5">
             <input onChange={handleChange} type="text" className="form-control" placeholder="Pizza Topping" value={
-                //Pizza Topping Should Go Here
-                props.pizzaData ? props.pizzaData.topping : null             
+                props.pizzaData.topping ? props.pizzaData.topping : ''    
               }/>
         </div>
         <div className="col">
@@ -36,14 +34,30 @@ const PizzaForm = (props) => {
         </div>
         <div className="col">
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="isveggie" id="isveggie" value="Vegetarian" onChange={handleRadio} checked/>
-            <label className="form-check-label" for="isveggie">
+            <input 
+              className="form-check-input" 
+              type="radio" 
+              name="isveggie" 
+              id="isveggie" 
+              value="Vegetarian" 
+              onChange={handleRadio} 
+              checked={props.pizzaData.vegetarian ? true : false}
+            />
+            <label className="form-check-label" htmlFor="isveggie">
               Vegetarian
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="isveggie" id="notveggie"value="Not Vegetarian" onChange={handleRadio} />
-            <label className="form-check-label" for="notveggie">
+            <input 
+              className="form-check-input" 
+              type="radio" 
+              name="isveggie" 
+              id="notveggie" 
+              value="Not Vegetarian" 
+              onChange={handleRadio} 
+              checked={props.pizzaData.vegetarian ? false : true}
+            />
+            <label className="form-check-label" htmlFor="notveggie">
               Not Vegetarian
             </label>
           </div>

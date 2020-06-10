@@ -13,17 +13,17 @@ class App extends Component {
       id: '',
       topping: '',
       size: '',
-      vegetarian: '',
+      vegetarian: false
     }
   };
   
-  componentDidMount(){
-    fetch(PIZZAS_URL)
-      .then(resp => resp.json())
-      .then(pizzas => {
-        this.setState({ pizzas })
-      })
-  }
+  // componentDidMount(){
+  //   fetch(PIZZAS_URL)
+  //     .then(resp => resp.json())
+  //     .then(pizzas => {
+  //       this.setState({ pizzas })
+  //     })
+  // }
 
   editPizza = (pizzaId) => {
     const pizzas = this.state.pizzas 
@@ -55,12 +55,70 @@ class App extends Component {
     });
   };
 
-  render() {
-    console.log(this.state.editingPizza)
+  updateVeggie = (vegOrNot) => {
+    if(vegOrNot === "Vegetarian"){
+      this.setState(previousState => {
+        return {
+          editingPizza: {
+            ...previousState.editingPizza,
+            vegetarian: true
+          }
+        }
+      });
+    } else {
+      this.setState(previousState => {
+        return {
+          editingPizza: {
+            ...previousState.editingPizza,
+            vegetarian: false
+          }
+        }
+      });
+    }
+  };
+
+  updateWholePizza = () => {
+    fetch(`${PIZZAS_URL}/${this.state.editingPizza.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify( this.state.editingPizza )
+    })
+      .then(resp => resp.json())
+      .then(pizza => {
+        alert(`pizza ${pizza.id}  updated`)
+        this.setState({
+          editingPizza: {
+            id: '',
+            topping: '',
+            size: '',
+            vegetarian: false
+          }
+        })
+      })
+    
+  };
+
+  render() {  
+    
+    fetch(PIZZAS_URL)
+      .then(resp => resp.json())
+      .then(pizzas => {
+        this.setState({ pizzas })
+      })
+
     return (
       <Fragment>
         <Header/>
-        <PizzaForm updateTopping={this.updateTopping} updateSize={this.updateSize} pizzaData={this.state.editingPizza}/>
+        <PizzaForm 
+          pizzaData={this.state.editingPizza}
+          updateTopping={this.updateTopping} 
+          updateSize={this.updateSize}
+          updateVeggie={this.updateVeggie}
+          updateWholePizza={this.updateWholePizza}                      
+        />
         <PizzaList pizzas={this.state.pizzas} editPizza={this.editPizza}/>
       </Fragment>
     );

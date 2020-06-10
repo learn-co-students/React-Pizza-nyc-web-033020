@@ -31,7 +31,6 @@ class PizzaList extends Component {
                 />
               )
             })
-            //render Pizza here
           }
         </tbody>
       </table>
