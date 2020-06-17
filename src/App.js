@@ -2,86 +2,75 @@ import React, { Component, Fragment } from 'react';
 import Header from './components/Header'
 import PizzaForm from './components/PizzaForm'
 import PizzaList from './containers/PizzaList'
-
 class App extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      pizzas: [],
-      pizza: {}
+  state = {
+    pizzas: [],
+    pizzaToEdit: {
+      id: null,
+      vegetarian: false,
+      topping: "",
+      size: ""
     }
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/pizzas')
+  componentDidMount(){
+    fetch("http://localhost:3000/pizzas")
     .then(res => res.json())
     .then(pizzas => this.setState({pizzas: pizzas}))
   }
 
-  choosePizza = (pizza) => {
-    this.setState({pizza: pizza})
+  editPizza = (pizza) => {
+    this.setState({pizzaToEdit: pizza})
   }
 
-  handleForm = (event) => {
-    const editPizza = event.target.value
-    this.setState((prevState) => {
-      return {pizza: {...prevState.pizza, topping: editPizza}} })
+  onChange = (event) => {
+    const target = event.target;
+    const value = target.value
+    const name = target.name;
+    this.setState({
+      pizzaToEdit: {...this.state.pizzaToEdit, [name]: value} //overwriting pizzaToEdit state to the input values // getting name from pizza form by adding them to the form
+    });
   }
 
-  handleDropdown = (event) => {
-    const editSize = event.target.value
-    this.setState((prevState) => {
-      return {pizza: {...prevState.pizza, size: editSize}}
+  onSubmit = () => {
+    const {pizzas, pizzaToEdit} = this.state
+    fetch(`http://localhost:3000/pizzas/${pizzaToEdit.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...pizzaToEdit})
     })
-  }
-
-  handleRadioBtn = (event) => {
-    const isVeg = event.target.value === 'Vegetarian'
-    this.setState((prevState) => {
-      return {pizza: {...prevState.pizza, vegetarian: isVeg}}
-    })
-  }
-
-  submitForm = () => {
-    if(this.state.pizza.id) {
-      const pizzaId = this.state.pizza.id
-      fetch(`http://localhost:3000/pizzas/${pizzaId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'},
-          body: JSON.stringify(this.state.pizza)
-      })
-      .then(res => res.json())
-      .then(pizzaObj => {
-        const newPizzaArray = this.state.pizzas.map(pizza => {
-          if(pizza.id === pizzaId){
-            return pizzaObj
-          } else{
-            return pizza
+    .then(res=> res.json())
+    .then(newPizza => {
+      // Find the pizza in the array that needs to be replaced
+        let pizzaIndex = pizzas.findIndex(pizza => pizza.id === newPizza.id)
+        // create a new pizza array where that pizza has been updated
+        let newPizzas = [...pizzas]
+        newPizzas[pizzaIndex] = newPizza
+        // change the pizzas in state to the new array
+        this.setState({pizzas: newPizzas,
+          pizzaToEdit: {
+            id: null,
+            vegetarian: false,
+            topping: "",
+            size: ""
           }
         })
-        this.setState({pizzas: newPizzaArray})
       })
-    }
   }
+
 
 
   render() {
+    console.log(this.state)
+    const {pizzas} = this.state
     return (
       <Fragment>
         <Header/>
-        <PizzaForm 
-        pizza={this.state.pizza}
-        handleForm={this.handleForm}
-        handleDropdown={this.handleDropdown}
-        handleRadioBtn={this.handleRadioBtn}
-        submitForm={this.submitForm}
-        />
-        <PizzaList  
-          pizzas={this.state.pizzas}
-          choosePizza={this.choosePizza}
-        />
+        <PizzaForm {...this.state.pizzaToEdit} onSubmit={this.onSubmit} onChange={this.onChange}/>
+        <PizzaList pizzas={pizzas} editPizza={this.editPizza} />
       </Fragment>
     );
   }
