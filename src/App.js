@@ -40,7 +40,7 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({...pizzaToEdit})
+      body: JSON.stringify({...pizzaToEdit}) //giving all the info from pizzaToEdit to the body of the pathc request
     })
     .then(res=> res.json())
     .then(newPizza => {
